@@ -1,6 +1,13 @@
-import Alert from "@/components/shared/Alert";
-import { ComponentProps, createContext, useState, useCallback, useMemo, useContext } from "react";
-import { createPortal } from "react-dom";
+import Alert from '@/components/shared/Alert'
+import {
+  ComponentProps,
+  createContext,
+  useState,
+  useCallback,
+  useMemo,
+  useContext,
+} from 'react'
+import { createPortal } from 'react-dom'
 
 type AlertProps = ComponentProps<typeof Alert>
 type AlertOptions = Omit<AlertProps, 'open'>
@@ -15,34 +22,38 @@ const defaultValue: AlertProps = {
   open: false,
   title: null,
   description: null,
-  onButtonClick: () => { }
+  onButtonClick: () => {},
 }
 
 const AlertContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [alertState, setAlertState] = useState(defaultValue);
+  const [alertState, setAlertState] = useState(defaultValue)
 
   const $portal_root = document.getElementById('root-portal')
 
   const close = useCallback(() => {
     setAlertState(defaultValue)
-  }, []);
+  }, [])
 
-  const open = useCallback(({ onButtonClick, ...options }: AlertOptions) => {
-    setAlertState({
-      ...options,
-      onButtonClick: () => {
-        close()
-        onButtonClick()
-      },
-      open: true,
+  const open = useCallback(
+    ({ onButtonClick, ...options }: AlertOptions) => {
+      setAlertState({
+        ...options,
+        onButtonClick: () => {
+          close()
+          onButtonClick()
+        },
+        open: true,
+      })
+    },
+    [close],
+  )
 
-    })
-  }, [close])
-
-
-  const values = useMemo(() => ({
-    open
-  }), [open])
+  const values = useMemo(
+    () => ({
+      open,
+    }),
+    [open],
+  )
 
   return (
     <Context.Provider value={values}>

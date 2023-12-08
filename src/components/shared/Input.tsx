@@ -1,5 +1,5 @@
-import { colors } from "@/styles/colorPalette";
-import styled from "@emotion/styled";
+import { colors } from '@/styles/colorPalette'
+import styled from '@emotion/styled'
 
 const Input = styled.input`
   padding: 0 16px;
@@ -13,11 +13,11 @@ const Input = styled.input`
 
   &:foucs {
     outline: none;
-    border-color: ${colors.blue}
+    border-color: ${colors.blue};
   }
 
   &[aria-invalid='true'] {
-    border-color: ${colors.red}
+    border-color: ${colors.red};
   }
 `
 

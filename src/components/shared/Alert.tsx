@@ -1,32 +1,53 @@
-import { colors } from "@/styles/colorPalette";
-import styled from "@emotion/styled";
-import Dimmed from "./Dimmed";
-import Text from "./Text";
-import Button from "./Button";
-import Flex from "./Flex";
+import { colors } from '@/styles/colorPalette'
+import styled from '@emotion/styled'
+import Dimmed from './Dimmed'
+import Text from './Text'
+import Button from './Button'
+import Flex from './Flex'
 
 interface AlertProps {
-  open?: boolean;
-  title: React.ReactNode;
+  open?: boolean
+  title: React.ReactNode
   description?: React.ReactNode
-  buttonLabel?: string;
+  buttonLabel?: string
   onButtonClick: () => void
 }
 
-const Alert = ({ open, title, description, buttonLabel = '확인', onButtonClick }: AlertProps) => {
+const Alert = ({
+  open,
+  title,
+  description,
+  buttonLabel = '확인',
+  onButtonClick,
+}: AlertProps) => {
   if (open === false) {
     return null
   }
 
-  return (<Dimmed>
-    <AlertContainer>
-      <Text typography="t4" bold={true} display='block' style={{ marginBottom: 6 }}>{title}</Text>
-      {description && <Text typography="t7">{description}</Text>}
-      <Flex justify="flex-end">
-        <Button onClick={onButtonClick} weak={true} style={{ marginTop: 12, border: 'none' }}>{buttonLabel}</Button>
-      </Flex>
-    </AlertContainer>
-  </Dimmed >)
+  return (
+    <Dimmed>
+      <AlertContainer>
+        <Text
+          typography="t4"
+          bold={true}
+          display="block"
+          style={{ marginBottom: 6 }}
+        >
+          {title}
+        </Text>
+        {description && <Text typography="t7">{description}</Text>}
+        <Flex justify="flex-end">
+          <Button
+            onClick={onButtonClick}
+            weak={true}
+            style={{ marginTop: 12, border: 'none' }}
+          >
+            {buttonLabel}
+          </Button>
+        </Flex>
+      </AlertContainer>
+    </Dimmed>
+  )
 }
 
 const AlertContainer = styled.div`
