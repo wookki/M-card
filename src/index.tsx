@@ -5,12 +5,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import GlobalStyles from './styles/globalStyles'
 import { Global } from '@emotion/react'
+import AlertContextProvider from './contexts/AlertContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Global styles={GlobalStyles} />
-    <App />
+    <AlertContextProvider>
+      <App />
+    </AlertContextProvider>
   </React.StrictMode>,
 )
 
